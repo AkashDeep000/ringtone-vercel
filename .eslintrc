@@ -1,15 +1,5 @@
 {
-  "extends": ["@remix-run/eslint-config", "@remix-run/eslint-config/node"],
+  "extends": ["@remix-run/eslint-config", "@remix-run/eslint-config/node","plugin:react-compat/recommended"],
+  "plugins": ["react-compat"],
   
-  settings: {
-    'import/resolver': {
-      alias: {
-        map: [
-          ['react', 'preact-compat'],
-          ['react-dom', 'preact-compat']
-        ],
-        extensions: ['.ts', '.js', '.jsx', '.json']
-      }
-    }
-  }
 }
