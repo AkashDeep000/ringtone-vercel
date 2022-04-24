@@ -1,28 +1,48 @@
-import { useReducer } from "react";
-import { context } from "./Context";
+import {
+  useReducer
+} from "react";
+import Context from "./Context.js";
 
 
 const reducer = (state, action) => {
-  switch (action) {
+
+  switch (action.type) {
     case 'PLAY':
       return {
         ...state,
-        isPlaying: true,
+        isPlayReq: true,
+        src: action.src,
+        ref: action.ref,
+        isT: true
       }
-      break;
-    
+    case 'PAUSE':
+      return {
+        ...state,
+        isPlayReq: false,
+        isT: false
+      }
+
+    case 'SET':
+      return {
+        ...state,
+        playerState: action.playerState,
+      }
+
     default:
       return state;
   }
 }
 
-export default function Provider({ children }) {
-  
- const [state, dispatch] = useReducer(reducer)
+export default function Provider( {
+  children
+}) {
+
+  const [state,
+    dispatch] = useReducer(reducer)
 
   return (
-    <AudioContext.Provider value={[state, dispatch]}>
+    <Context.Provider value={[state, dispatch]}>
         {children}
-    </AudioContext.Provider>
+    </Context.Provider>
   );
 }

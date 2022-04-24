@@ -4,6 +4,7 @@ import Tags from "./Tags";
 import {
   AiFillHeart
 } from 'react-icons/ai';
+import AudioProvider from 'app/components/AudioPlayer/Provider'
 
 export default function ItemCard( {
   props
@@ -12,17 +13,18 @@ export default function ItemCard( {
   return (
     <>
     <div className="grid place-items-center grid-cols-[auto_auto] gap-6 shadow-sm bg-white rounded-md py-3 px-3">
-    <Player />
-    <Info/>
+
+        <Player props={ { id: props.id }} />
+
+
+    <Info props={ { title: props.title,
+      duration: props.duration
+    }} />
     <div className="col-span-2 place-self-start space-x-2">
-    <Tags/>
+    <Tags />
     </div>
-      
-    <AiFillHeart className="w-8 h-8 text-slate-300"/>
+    <AiFillHeart className="w-8 h-8 text-slate-300" />
     <a className="place-self-end text-white px-3 py-1.5 bg-cyan-400 rounded-md">Download</a>
-  
-    </div>
-    
-    </>
+    </div> < />
   )
 }
